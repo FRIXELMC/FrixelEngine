@@ -1,0 +1,26 @@
+name: FrixelEngine
+version: ${version}
+author: FRIXELMC
+
+api-version: "1.21"
+description: Plugin Engine
+load: STARTUP
+website: https://grassproject.github.io
+
+main: com.github.frixel.frixelengine.FrixelEngine
+loader: com.github.frixel.frixelengine.loader.FrixelEngineLoader
+
+dependencies:
+  server:
+    CraftEngine:
+      load: BEFORE
+      required: false
+    ItemsAdder:
+      load: BEFORE
+      required: false
+    Nexo:
+      load: BEFORE
+      required: false
+    PlaceholderAPI:
+      load: BEFORE
+      required: false
