@@ -1,9 +1,9 @@
-package kr.mrjimin.cosmeticsadder.util.event
+package com.github.frixel.frixelengine.util.event
 
-import kr.mrjimin.cosmeticsadder.CosmeticsAdderPlugin
+import com.github.frixel.frixelengine.api.FrixelPlugin
 import org.bukkit.Bukkit
 import org.bukkit.event.Listener
 
 fun Listener.register() {
-    Bukkit.getPluginManager().registerEvents(this, CosmeticsAdderPlugin.INSTANCE)
+    Bukkit.getPluginManager().registerEvents(this, FrixelPlugin.INSTANCE)
 }
