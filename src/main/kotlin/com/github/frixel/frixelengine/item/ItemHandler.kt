@@ -1,5 +1,5 @@
 package com.github.frixel.frixelengine.item
 
-class ItemHandler {
+object ItemHandler {
 
 }

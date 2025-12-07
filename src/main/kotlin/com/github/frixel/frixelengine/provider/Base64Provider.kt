@@ -1,10 +1,18 @@
-package com.github.frixel.frixelengine.item.provider
+package com.github.frixel.frixelengine.provider
 
 import com.github.frixel.frixelengine.api.integration.CustomItemProvider
 import kr.mrjimin.cosmeticsadder.util.item.ItemEncoder
+import org.bukkit.Location
+import org.bukkit.block.Block
+import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
 
 object Base64Provider : CustomItemProvider {
+    override fun isCustomBlock(block: Block): Boolean = false
+    override fun blockID(block: Block): String? = null
+    override fun isFurniture(entity: Entity): Boolean = false
+    override fun furnitureID(entity: Entity): String? = null
+
     override fun itemID(itemStack: ItemStack): String? {
         return null
     }
