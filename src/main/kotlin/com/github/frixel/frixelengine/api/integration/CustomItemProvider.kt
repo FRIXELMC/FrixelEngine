@@ -1,6 +1,5 @@
 package com.github.frixel.frixelengine.api.integration
 
-import org.bukkit.Location
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
