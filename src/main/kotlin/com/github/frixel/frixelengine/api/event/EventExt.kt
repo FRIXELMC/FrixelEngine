@@ -1,4 +1,4 @@
-package com.github.frixel.frixelengine.util.event
+package com.github.frixel.frixelengine.api.event
 
 import com.github.frixel.frixelengine.api.FrixelPlugin
 import org.bukkit.Bukkit

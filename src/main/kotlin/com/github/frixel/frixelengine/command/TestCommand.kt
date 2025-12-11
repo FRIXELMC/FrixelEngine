@@ -16,7 +16,6 @@ object TestCommand {
                         Command.SINGLE_SUCCESS
                     }
             )
-
             .executes { ctx ->
                 ctx.source.sender.sendMessage("test")
                 Command.SINGLE_SUCCESS
