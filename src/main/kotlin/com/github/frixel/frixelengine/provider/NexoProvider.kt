@@ -1,7 +1,6 @@
 package com.github.frixel.frixelengine.provider
 
 import com.github.frixel.frixelengine.api.integration.CustomItemProvider
-import com.github.frixel.frixelengine.util.PluginUtil.isEnabled
 import com.nexomc.nexo.api.NexoBlocks
 import com.nexomc.nexo.api.NexoFurniture
 import com.nexomc.nexo.api.NexoItems

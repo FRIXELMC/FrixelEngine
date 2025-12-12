@@ -7,7 +7,6 @@ import net.momirealms.craftengine.bukkit.api.CraftEngineItems
 import net.momirealms.craftengine.core.item.ItemBuildContext
 import net.momirealms.craftengine.core.plugin.context.ContextHolder
 import net.momirealms.craftengine.core.util.Key
-import org.bukkit.Location
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack

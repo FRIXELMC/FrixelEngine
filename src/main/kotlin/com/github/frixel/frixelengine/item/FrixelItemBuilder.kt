@@ -16,7 +16,7 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemRarity
 import org.bukkit.inventory.ItemStack
-import java.util.Locale
+import java.util.*
 
 class FrixelItemBuilder(
     private val baseItem: ItemStack

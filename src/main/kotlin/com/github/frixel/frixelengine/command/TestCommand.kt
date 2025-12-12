@@ -8,20 +8,16 @@ import io.papermc.paper.command.brigadier.Commands
 
 object TestCommand {
 
-    fun test(): LiteralCommandNode<CommandSourceStack> {
-        return Commands.literal("test")
-
-            .then(
-                Commands.literal("test1")
-                    .executes { ctx ->
-                        ctx.source.sender.sendMessage("test1")
-                        Command.SINGLE_SUCCESS
-                    }
-            )
-            .executes { ctx ->
-                ctx.source.sender.sendMessage("test")
-                Command.SINGLE_SUCCESS
+    fun test(): LiteralCommandNode<CommandSourceStack> =
+        FrixelCommand(
+            "test",
+            "This is a test command",
+            "frixel.test",
+            listOf("tst", "테스트")
+        )
+            .addBranch("hello") { ctx ->
+                val source = ctx.source
+                source.sender.sendRichMessage("Hello, World!")
             }
             .build()
-    }
 }

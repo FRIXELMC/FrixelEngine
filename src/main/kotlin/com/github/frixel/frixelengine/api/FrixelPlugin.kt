@@ -12,6 +12,15 @@ abstract class FrixelPlugin : JavaPlugin(), IFrixelPlugin {
         val PLUGINS: MutableSet<FrixelPlugin> = mutableSetOf()
     }
 
+    private fun isFolia(): Boolean {
+        try {
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer")
+            return true
+        } catch (e: ClassNotFoundException) {
+            return false
+        }
+    }
+
     override fun onLoad() {
         load()
     }
