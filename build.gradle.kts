@@ -4,11 +4,15 @@ plugins {
     kotlin("jvm") version "2.2.21"
     id("com.gradleup.shadow") version "9.2.2"
     id("java")
+    id("com.palantir.git-version") version "4.2.0"
     `java-library`
 }
 
 group = "com.github.frixel.frixelengine"
-version = "1.0-SNAPSHOT"
+//version = "1.0-SNAPSHOT"
+
+val gitVersion: groovy.lang.Closure<String> by extra
+version = gitVersion()
 
 repositories {
     mavenCentral()
