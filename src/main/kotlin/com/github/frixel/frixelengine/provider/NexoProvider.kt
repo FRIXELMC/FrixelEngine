@@ -1,15 +1,19 @@
 package com.github.frixel.frixelengine.provider
 
 import com.github.frixel.frixelengine.api.integration.CustomItemProvider
+import com.github.frixel.frixelengine.util.PluginUtil.isEnabled
 import com.nexomc.nexo.api.NexoBlocks
 import com.nexomc.nexo.api.NexoFurniture
 import com.nexomc.nexo.api.NexoItems
-import org.bukkit.Location
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
 
 object NexoProvider : CustomItemProvider {
+    init {
+
+    }
+
     override fun isCustomBlock(block: Block): Boolean {
         return NexoBlocks.isCustomBlock(block)
     }

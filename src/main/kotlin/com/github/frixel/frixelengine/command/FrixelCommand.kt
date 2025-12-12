@@ -45,7 +45,7 @@ class FrixelCommand {
     }
 
     fun <T : Enum<T>> addBranch(branch:String, executor: (CommandContext<CommandSourceStack>) -> Unit, suggestion: CustomArgument<T>) : FrixelCommand {
-        commands.then(Commands.argument("args", suggestion))
+        commands.then(Commands.argument(branch, suggestion))
             .executes { ctx ->
                 executor(ctx)
                 return@executes Command.SINGLE_SUCCESS
