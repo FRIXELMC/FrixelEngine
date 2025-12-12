@@ -8,7 +8,9 @@ import com.github.frixel.frixelengine.item.FrixelItemBuilder
 import com.github.frixel.frixelengine.item.frixelItemBuilder
 import net.kyori.adventure.key.Key
 import org.bukkit.Material
+import org.bukkit.NamespacedKey
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.persistence.PersistentDataType
 
 class FrixelEnginePlugin : FrixelPlugin() {
 
