@@ -8,8 +8,7 @@ import org.bukkit.inventory.ItemStack
 object ItemHandler {
 
     fun itemStackById(namespace: String): ItemStack? {
-        try {
-            return if (namespace.contains(":")) {
+        return if (namespace.contains(":")) {
                 val id = namespace.split(":").first().uppercase()
                 val provider = FrixelRegistry.ITEM_PROVIDERS[id] ?: return null
                 provider.itemStack(namespace.substring(id.length + 1))
@@ -17,9 +16,5 @@ object ItemHandler {
                 val material = Material.getMaterial(namespace.uppercase()) ?: return null
                 ItemStack(material)
             }
-        } catch (e: ClassNotFoundException) {
-            Bukkit.getLogger().warning("[FrixelEngine] Something went wrong, did you forget to install a required plugin?")
-            return null
-        }
     }
 }
