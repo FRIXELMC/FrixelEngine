@@ -1,17 +1,24 @@
 package com.github.frixel.frixelengine.hangul
 
-import com.mojang.brigadier.arguments.ArgumentType
-import com.mojang.brigadier.arguments.StringArgumentType
-import io.papermc.paper.command.brigadier.argument.CustomArgumentType
+import com.github.frixel.frixelengine.command.argument.CustomArgument
 import org.jspecify.annotations.NullMarked
+import java.util.*
 
-//@NullMarked
-//class HangulArgument: CustomArgumentType.Converted<HangulDefault, String> {
-//    override fun getNativeType(): ArgumentType<String> {
-//        return StringArgumentType.word();
-//    }
-//
-//    override fun convert(nativeType: String): HangulDefault {
-//
-//    }
-//}
+@NullMarked
+class HangulArgument : CustomArgument<HangulArgument.HangulDefault>(
+    HangulDefault.entries.associateBy { it.name.lowercase() }
+) {
+    init {
+
+    }
+
+    @NullMarked
+    enum class HangulDefault {
+        옵션,
+
+        ;
+        override fun toString(): String {
+            return name.lowercase(Locale.getDefault())
+        }
+    }
+}

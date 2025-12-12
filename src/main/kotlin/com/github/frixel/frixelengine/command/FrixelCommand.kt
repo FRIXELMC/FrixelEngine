@@ -1,7 +1,7 @@
 package com.github.frixel.frixelengine.command
 
 import com.github.frixel.frixelengine.api.FrixelPlugin
-import com.github.frixel.frixelengine.command.argument.ArgumentBuilder.CustomArgument
+import com.github.frixel.frixelengine.command.argument.CustomArgument
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
