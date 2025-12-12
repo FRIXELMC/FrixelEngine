@@ -6,9 +6,16 @@ import com.github.frixel.frixelengine.command.TestCommand
 import com.github.frixel.frixelengine.command.register
 import com.github.frixel.frixelengine.item.FrixelItemBuilder
 import com.github.frixel.frixelengine.item.frixelItemBuilder
+import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.key.Key
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.event.ClickEvent
+import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.text.format.TextDecoration
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.player.PlayerJoinEvent
+
 
 class FrixelEnginePlugin : FrixelPlugin() {
 
@@ -40,6 +47,39 @@ class FrixelEnginePlugin : FrixelPlugin() {
                 setDisplayName("<green>aaabbbccc")
             }.build()
             it.player.inventory.addItem(item1)
+        }
+
+        event<AsyncChatEvent> { event ->
+            event.renderer { player, playerName, message, viewer ->
+                val base = Component.textOfChildren(
+                    playerName.colorIfAbsent(NamedTextColor.GOLD),
+                    Component.text(" » ", NamedTextColor.DARK_GRAY),
+                    message
+                )
+
+                if (viewer !== player) {
+                    return@renderer base
+                }
+
+                val deleteCrossBase: Component = Component.textOfChildren(
+                    Component.text("[", NamedTextColor.DARK_GRAY),
+                    Component.text("X", NamedTextColor.DARK_RED, TextDecoration.BOLD),
+                    Component.text("]", NamedTextColor.DARK_GRAY)
+                )
+
+
+                val deleteCross = deleteCrossBase
+                    .hoverEvent(
+                        Component.text(
+                            "Click to delete your message!",
+                            NamedTextColor.RED
+                        )
+                    )
+                    .clickEvent(ClickEvent.callback { audience ->
+                        Bukkit.getServer().deleteMessage(event.signedMessage())
+                    })
+                base.appendSpace().append(deleteCross)
+            }
         }
     }
 }

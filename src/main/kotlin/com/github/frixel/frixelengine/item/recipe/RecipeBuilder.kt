@@ -18,6 +18,7 @@ class RecipeBuilder(
 ) {
     private lateinit var recipe: Recipe
 
+    @JvmName("addShapeRecipeMaterial")
     fun addShapeRecipe(shape: Array<Material>) {
         addShapeRecipe(shape.map { ItemStack(it) }.toTypedArray())
     }
@@ -32,6 +33,7 @@ class RecipeBuilder(
         }
     }
 
+    @JvmName("addShapelessRecipeMaterial")
     fun addShapelessRecipe(items: Map<Material, Int>) {
         addShapelessRecipe(items.mapKeys { ItemStack(it.key) }.toMap())
     }
