@@ -1,4 +1,4 @@
-package kr.mrjimin.cosmeticsadder.util.item
+package com.github.frixel.frixelengine.util.item
 
 import org.bukkit.inventory.ItemStack
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder

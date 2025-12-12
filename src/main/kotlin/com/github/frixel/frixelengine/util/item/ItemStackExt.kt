@@ -1,4 +1,4 @@
-package kr.mrjimin.cosmeticsadder.util.item
+package com.github.frixel.frixelengine.util.item
 
 import org.bukkit.inventory.ItemStack
 

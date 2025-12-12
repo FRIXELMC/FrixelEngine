@@ -1,8 +1,7 @@
 package com.github.frixel.frixelengine.provider
 
 import com.github.frixel.frixelengine.api.integration.CustomItemProvider
-import kr.mrjimin.cosmeticsadder.util.item.ItemEncoder
-import org.bukkit.Location
+import com.github.frixel.frixelengine.util.item.ItemEncoder
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
