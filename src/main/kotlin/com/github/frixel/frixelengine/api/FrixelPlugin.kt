@@ -9,8 +9,7 @@ abstract class FrixelPlugin : JavaPlugin(), IFrixelPlugin {
     companion object {
         lateinit var INSTANCE: FrixelPlugin
 
-        lateinit var PLUGINS: MutableList<FrixelPlugin>
-            private set
+        val PLUGINS: MutableSet<FrixelPlugin> = mutableSetOf()
     }
 
     override fun onLoad() {

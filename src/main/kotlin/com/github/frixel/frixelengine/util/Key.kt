@@ -1,5 +1,6 @@
 package com.github.frixel.frixelengine.util
 
+@Deprecated("Using net.kyori.adventure.key.Key")
 data class Key(
     val namespace: String,
     val value: String
