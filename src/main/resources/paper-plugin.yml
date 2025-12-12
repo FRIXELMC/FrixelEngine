@@ -7,7 +7,7 @@ description: Plugin Engine
 load: STARTUP
 website: https://grassproject.github.io
 
-main: com.github.frixel.frixelengine.FrixelEngine
+main: com.github.frixel.frixelengine.FrixelEnginePlugin
 loader: com.github.frixel.frixelengine.loader.FrixelEngineLoader
 
 dependencies:

@@ -8,6 +8,9 @@ abstract class FrixelPlugin : JavaPlugin(), IFrixelPlugin {
 
     companion object {
         lateinit var INSTANCE: FrixelPlugin
+
+        lateinit var PLUGINS: MutableList<FrixelPlugin>
+            private set
     }
 
     override fun onLoad() {
@@ -15,12 +18,14 @@ abstract class FrixelPlugin : JavaPlugin(), IFrixelPlugin {
     }
 
     override fun onEnable() {
-        FrixelPluginRegisterEvent(this).callEvent()
+        PLUGINS.add(this)
         enable()
+        FrixelPluginRegisterEvent(this).callEvent()
     }
 
     override fun onDisable() {
-        FrixelPluginUnregisterEvent(this).callEvent()
+        PLUGINS.remove(this)
         disable()
+        FrixelPluginUnregisterEvent(this).callEvent()
     }
 }
