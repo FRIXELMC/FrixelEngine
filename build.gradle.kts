@@ -8,11 +8,19 @@ plugins {
     `java-library`
 }
 
-group = "com.github.frixel.frixelengine"
-//version = "1.0-SNAPSHOT"
+val git : String = versionBanner()
+val builder : String = builder()
+ext["git_version"] = git
+ext["builder"] = builder
 
-val gitVersion: groovy.lang.Closure<String> by extra
-version = gitVersion()
+val isDev: Boolean = true
+
+group = "com.github.frixel.frixelengine"
+version = if (isDev) {
+    "${rootProject.properties["project_version"]!!}-$git-dev"
+} else {
+    "${rootProject.properties["project_version"]!!}-$git"
+}
 
 repositories {
     mavenCentral()
@@ -43,7 +51,7 @@ java {
 
 tasks {
     register<ShadowJar>("shadowJarPlugin") {
-        archiveFileName.set("FrixelEngine-${project.version}.jar")
+        archiveFileName.set("FrixelEngine-${version}.jar")
 
         from(sourceSets.main.get().output)
         configurations = listOf(project.configurations.runtimeClasspath.get())
@@ -73,3 +81,11 @@ tasks {
         }
     }
 }
+
+fun versionBanner(): String = project.providers.exec {
+    commandLine("git", "rev-parse", "--short=8", "HEAD")
+}.standardOutput.asText.map { it.trim() }.getOrElse("Unknown")
+
+fun builder(): String = project.providers.exec {
+    commandLine("git", "config", "user.name")
+}.standardOutput.asText.map { it.trim() }.getOrElse("Unknown")
