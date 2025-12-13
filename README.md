@@ -23,3 +23,10 @@ dependencies:
     FrixelEngine:
       required: true
 ```
+
+
+## 🛒 Deploy
+```bash
+> git tag (version)
+> git push origin (version
+```
