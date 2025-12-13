@@ -1,0 +1,34 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Extract tag
+        run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Build
+        run: ./gradlew build
+        env:
+          GIT_TAG: ${{ env.GIT_TAG }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.GIT_TAG }}
+          name: Release ${{ env.GIT_TAG }}
+          files: build/libs/*.jar
