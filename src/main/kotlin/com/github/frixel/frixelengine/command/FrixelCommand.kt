@@ -18,47 +18,73 @@ class FrixelCommand {
     private var required:(CommandSourceStack)-> Boolean = { true }
 
     private val commands: LiteralArgumentBuilder<CommandSourceStack>
-        get() = Commands.literal(this.name).apply {
-            requires { sender ->
-                sender.sender.hasPermission(this@FrixelCommand.permission)
-                        && required(sender)
-            }
-        }
 
     constructor(name: String, description: String, permission: String, alias: List<String>) {
         this.name= name
         this.description= description
         this.permission= Permission(permission)
         this.alias= alias
+
+        commands= Commands.literal(this.name).apply {
+            requires { sender ->
+                sender.sender.hasPermission(this@FrixelCommand.permission)
+                        && required(sender)
+            }
+        }
     }
     constructor(name: String, description: String, permission: Permission, alias: List<String>) {
         this.name= name
         this.description= description
         this.permission= permission
         this.alias= alias
+
+        commands= Commands.literal(this.name).apply {
+            requires { sender ->
+                sender.sender.hasPermission(this@FrixelCommand.permission)
+                        && required(sender)
+            }
+        }
     }
 
-    fun addBranch(branch:String, executor: (CommandContext<CommandSourceStack>) -> Unit) : FrixelCommand {
-        commands.then(Commands.literal(branch))
+    fun addBranch(
+        branch: String,
+        executor: (CommandContext<CommandSourceStack>) -> Unit
+    ): FrixelCommand {
+        val node = Commands.literal(branch)
             .executes { ctx ->
                 executor(ctx)
-                return@executes Command.SINGLE_SUCCESS
+                Command.SINGLE_SUCCESS
             }
+
+        commands.then(node)
         return this
     }
 
-    fun <T : Enum<T>> addBranch(branch:String, executor: (CommandContext<CommandSourceStack>) -> Unit, suggestion: CustomArgument<T>) : FrixelCommand {
-        commands.then(Commands.argument(branch, suggestion))
-            .executes { ctx ->
-                executor(ctx)
-                return@executes Command.SINGLE_SUCCESS
-            }
 
+    fun <T : Enum<T>> addBranch(
+        branch: String,
+        argument: String,
+        suggestion: CustomArgument<T>,
+        executor: (CommandContext<CommandSourceStack>) -> Unit
+    ): FrixelCommand {
+        val node = Commands.literal(branch)
+            .then(Commands.argument(argument, suggestion)
+                .executes { ctx ->
+                    executor(ctx)
+                    Command.SINGLE_SUCCESS
+                })
+
+        commands.then(node)
         return this
     }
+
 
     fun setRequire(require:(CommandSourceStack)-> Boolean) = apply {
         this.required= require
+    }
+
+    fun get(): LiteralArgumentBuilder<CommandSourceStack> {
+        return commands
     }
 
     fun build(): LiteralCommandNode<CommandSourceStack> {

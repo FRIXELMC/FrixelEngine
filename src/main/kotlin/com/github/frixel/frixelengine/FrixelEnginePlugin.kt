@@ -32,6 +32,7 @@ class FrixelEnginePlugin : FrixelPlugin() {
 
     override fun enable() {
         TestCommand.test().register(this)
+
         val key = Key.key("aaa:bbb")
         println(key)
         println(key.value())
@@ -47,6 +48,7 @@ class FrixelEnginePlugin : FrixelPlugin() {
                 setDisplayName("<green>aaabbbccc")
             }.build()
             it.player.inventory.addItem(item1)
+            it.player.updateCommands()
         }
 
         event<AsyncChatEvent> { event ->
